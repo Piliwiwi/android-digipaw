@@ -7,7 +7,7 @@ ext {
     hiltVersion = '2.41'
     hiltXVersion = '1.0.0-alpha03'
     jUnit5Version = '5.8.2'
-    lifecycleVersion = '2.4.1'
+    lifecycleVersion = '2.3.1'
     lottieVersion = '5.1.1'
     materialVersion = '1.6.0'
     mockkVersion = '1.12.3'

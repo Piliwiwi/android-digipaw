@@ -1,4 +1,4 @@
-package com.arech.digipaw.ui.theme
+package com.arech.uicomponents.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle

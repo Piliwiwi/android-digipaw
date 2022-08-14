@@ -12,10 +12,9 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextAlign.Companion.Center
-import androidx.compose.ui.tooling.preview.Preview
-import com.arech.digipaw.ui.theme.DigipawComposeTheme
+import com.arech.digipaw.ui.ComponentPreviewActivity
+import com.arech.uicomponents.theme.DigipawComposeTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,6 +29,12 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val intent = ComponentPreviewActivity.makeIntent(this)
+        startActivity(intent)
     }
 }
 
