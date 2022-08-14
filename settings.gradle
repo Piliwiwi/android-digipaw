@@ -14,3 +14,7 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Digipaw Compose"
 include ':app'
+include ':uicomponents'
+include ':network'
+include ':mvi'
+include ':utils'
