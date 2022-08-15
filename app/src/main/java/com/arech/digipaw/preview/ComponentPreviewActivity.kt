@@ -1,11 +1,10 @@
-package com.arech.digipaw.ui
+package com.arech.digipaw.preview
 
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.arech.uicomponents.component.PetCard
 import com.arech.uicomponents.theme.DigipawComposeTheme
 
 /**
@@ -17,7 +16,6 @@ class ComponentPreviewActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             DigipawComposeTheme {
-                PetCard()
             }
         }
     }
