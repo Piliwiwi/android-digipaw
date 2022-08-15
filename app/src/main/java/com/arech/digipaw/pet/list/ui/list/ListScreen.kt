@@ -4,6 +4,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -12,6 +14,7 @@ import androidx.compose.ui.unit.dp
 import com.arech.uicomponents.component.AttrsPetCard
 import com.arech.uicomponents.groupcomponent.AttrsPetCardList
 import com.arech.uicomponents.groupcomponent.PetCardList
+import com.arech.uicomponents.navigation.DigipawTopAppBar
 
 /**
  * Created by Pili Arancibia on 14-08-22.
@@ -20,7 +23,10 @@ import com.arech.uicomponents.groupcomponent.PetCardList
 @Composable
 fun ListScreen() {
     Scaffold(
-        modifier = Modifier
+        modifier = Modifier,
+        topBar = {
+            DigipawTopAppBar(text = "Mascotas")
+        }
     ) {
         Column(
             modifier = Modifier.fillMaxSize(),
