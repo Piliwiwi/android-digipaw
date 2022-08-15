@@ -5,6 +5,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -20,9 +22,10 @@ import com.arech.uicomponents.component.PetCard
  */
 
 @Composable
-fun PetCardList(attrs: AttrsPetCardList) {
-    LazyColumn {
+fun PetCardList(modifier: Modifier = Modifier, attrs: AttrsPetCardList) {
+    LazyColumn(modifier) {
         items(attrs.pets) { pet ->
+            pet.onclick = attrs.onclick
             PetCard(
                 modifier = Modifier.padding(top = dimensionResource(id = R.dimen.ui_margin_12)),
                 attrs = pet
@@ -45,6 +48,7 @@ fun PetCardListPreview() {
                 attrs = AttrsPetCardList(
                     pets = listOf(
                         AttrsPetCard(
+                            id = "1",
                             name = "Peluo",
                             animal = "Gato",
                             breed = "Pelo",
@@ -53,6 +57,7 @@ fun PetCardListPreview() {
                             description = "“Este gato duerme 16 horas al día le gusta jugar con pantuflas y comer bolsas de basura nuevas, peligroso”"
                         ),
                         AttrsPetCard(
+                            id = "1",
                             name = "Siri",
                             animal = "Gata",
                             breed = "Apple",
@@ -61,6 +66,7 @@ fun PetCardListPreview() {
                             description = "“Este gato duerme 16 horas al día le gusta jugar con pantuflas y comer bolsas de basura nuevas, peligroso”"
                         ),
                         AttrsPetCard(
+                            id = "1",
                             name = "Bicho",
                             animal = "Gato",
                             breed = "Insecto",
@@ -76,5 +82,6 @@ fun PetCardListPreview() {
 }
 
 data class AttrsPetCardList(
-    val pets: List<AttrsPetCard>
+    val pets: List<AttrsPetCard>,
+    val onclick: (String) -> Unit = { _ -> }
 )

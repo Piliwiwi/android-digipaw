@@ -13,6 +13,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign.Companion.Center
+import com.arech.digipaw.pet.list.ui.PetListActivity
 import com.arech.digipaw.preview.ComponentPreviewActivity
 import com.arech.uicomponents.theme.DigipawComposeTheme
 
@@ -33,7 +34,7 @@ class MainActivity : ComponentActivity() {
 
     override fun onStart() {
         super.onStart()
-        val intent = ComponentPreviewActivity.makeIntent(this)
+        val intent = PetListActivity.makeIntent(this)
         startActivity(intent)
     }
 }

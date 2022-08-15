@@ -5,6 +5,7 @@ import androidx.annotation.DrawableRes
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -38,9 +39,12 @@ import com.arech.uicomponents.R
 fun PetCard(modifier: Modifier = Modifier, attrs: AttrsPetCard) {
     val genderResource = getGenderResource(attrs.isMale)
     Card(
-        modifier = modifier,
+        modifier = modifier.clickable { attrs.onclick },
         elevation = dimensionResource(id = R.dimen.ui_elevation_10),
-        border = BorderStroke(dimensionResource(id = R.dimen.ui_size_2), colorResource(id = genderResource.borderColor))
+        border = BorderStroke(
+            dimensionResource(id = R.dimen.ui_size_2),
+            colorResource(id = genderResource.borderColor)
+        )
     ) {
         PetCardContent(attrs, genderResource)
     }
@@ -48,7 +52,11 @@ fun PetCard(modifier: Modifier = Modifier, attrs: AttrsPetCard) {
 
 @Composable
 private fun PetCardContent(attrs: AttrsPetCard, genderResource: GenderResource) {
-    Row(modifier = Modifier.background(color = colorResource(id = genderResource.backgroundColor)).padding(dimensionResource(id = R.dimen.ui_margin_16))) {
+    Row(
+        modifier = Modifier
+            .background(color = colorResource(id = genderResource.backgroundColor))
+            .padding(dimensionResource(id = R.dimen.ui_margin_16))
+    ) {
         Column(
             modifier = Modifier
                 .padding(end = dimensionResource(id = R.dimen.ui_margin_16))
@@ -129,6 +137,7 @@ fun PetCardPreview() {
         ) {
             PetCard(
                 attrs = AttrsPetCard(
+                    id = "1",
                     name = "Misifus",
                     animal = "Gato",
                     breed = "Romano",
@@ -149,12 +158,14 @@ private fun getGenderResource(isMale: Boolean): GenderResource =
     )
 
 data class AttrsPetCard(
+    val id: String,
     val name: String,
     val animal: String,
     val breed: String,
     val isMale: Boolean,
     val age: String,
-    val description: String
+    val description: String,
+    var onclick: (String) -> Unit = { _ -> }
 )
 
 private data class GenderResource(
