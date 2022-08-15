@@ -19,7 +19,6 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
@@ -36,10 +35,10 @@ import com.arech.uicomponents.R
  */
 
 @Composable
-fun PetCard(attrs: AttrsPetCard) {
+fun PetCard(modifier: Modifier = Modifier, attrs: AttrsPetCard) {
     val genderResource = getGenderResource(attrs.isMale)
     Card(
-        modifier = Modifier,
+        modifier = modifier,
         elevation = dimensionResource(id = R.dimen.ui_elevation_10),
         border = BorderStroke(dimensionResource(id = R.dimen.ui_size_2), colorResource(id = genderResource.borderColor))
     ) {
@@ -129,7 +128,7 @@ fun PetCardPreview() {
             verticalArrangement = Arrangement.Center
         ) {
             PetCard(
-                AttrsPetCard(
+                attrs = AttrsPetCard(
                     name = "Misifus",
                     animal = "Gato",
                     breed = "Romano",
