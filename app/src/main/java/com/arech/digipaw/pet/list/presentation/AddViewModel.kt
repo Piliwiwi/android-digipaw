@@ -54,7 +54,7 @@ class AddViewModel @Inject constructor(
             }
             .handleEffect()
             .scan(defaultUiState) { currentUiState, result ->
-                with(reducer) { currentUiState reduceWith result }
+                with(reducer) { currentUiState reduce result }
             }
             .onEach { uiState ->
                 this.uiState.value = uiState

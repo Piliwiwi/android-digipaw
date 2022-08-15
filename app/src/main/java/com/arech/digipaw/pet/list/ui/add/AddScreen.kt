@@ -29,8 +29,6 @@ import com.arech.uicomponents.navigation.DigipawTopAppBar
 
 @Composable
 fun AddScreen() {
-
-
     Scaffold(
         topBar = {
             DigipawTopAppBar(text = "Agrega una Mascota")

@@ -9,6 +9,7 @@ import com.arech.digipaw.pet.list.presentation.add.mapper.LocalPetCardMapper
 import com.arech.digipaw.pet.list.presentation.model.PetCard
 import com.arech.mvi.execution.ExecutionThread
 import javax.inject.Inject
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
@@ -19,7 +20,7 @@ import kotlinx.coroutines.flow.onStart
  * Created by Pili Arancibia on 15-08-22.
  */
 
-
+@FlowPreview
 class AddProcessor @Inject constructor(
     private val repository: PetListDataRepository,
     private val mapper: LocalPetCardMapper,

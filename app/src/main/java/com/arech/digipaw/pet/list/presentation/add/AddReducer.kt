@@ -14,7 +14,7 @@ import javax.inject.Inject
  */
 
 class AddReducer @Inject constructor() : MviReducer<AddUiState, AddResult> {
-    override fun AddUiState.reduceWith(result: AddResult): AddUiState {
+    override fun AddUiState.reduce(result: AddResult): AddUiState {
         return when (val currentState = this) {
             is DefaultUiState -> currentState reduceWith result
             is ErrorUiState -> currentState reduceWith result

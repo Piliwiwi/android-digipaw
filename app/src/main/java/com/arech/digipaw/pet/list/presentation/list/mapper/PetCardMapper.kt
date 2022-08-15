@@ -14,7 +14,11 @@ import javax.inject.Inject
  */
 
 class PetCardMapper @Inject constructor() {
-    fun LocalPetCard.toPresentation() = PetCard(
+    fun List<LocalPetCard>.toPresentation() = map {
+        it.toPresentation()
+    }
+
+    private fun LocalPetCard.toPresentation() = PetCard(
         id = id,
         name = name.orEmpty(),
         description = description.orEmpty(),
