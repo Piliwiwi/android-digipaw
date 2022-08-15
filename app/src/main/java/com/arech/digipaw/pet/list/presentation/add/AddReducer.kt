@@ -23,6 +23,7 @@ class AddReducer @Inject constructor() : MviReducer<AddUiState, AddResult> {
 
     private infix fun DefaultUiState.reduceWith(result: AddResult): AddUiState {
         return when (result) {
+            Default -> this
             Error -> ErrorUiState
             Completed -> this
             else -> throw UnsupportedReduceException(this, result)

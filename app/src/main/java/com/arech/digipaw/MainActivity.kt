@@ -16,7 +16,13 @@ import androidx.compose.ui.text.style.TextAlign.Companion.Center
 import com.arech.digipaw.pet.list.ui.PetListActivity
 import com.arech.digipaw.preview.ComponentPreviewActivity
 import com.arech.uicomponents.theme.DigipawComposeTheme
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
 
+@AndroidEntryPoint
+@FlowPreview
+@ExperimentalCoroutinesApi
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
