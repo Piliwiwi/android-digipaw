@@ -66,7 +66,9 @@ fun AddScreen() {
             contentAlignment = BottomCenter
         ) {
             Button(
-                onClick = { /*TODO*/ }
+                onClick = {
+
+                }
             ) {
                 Text(
                     text = "¡Añadir!",
