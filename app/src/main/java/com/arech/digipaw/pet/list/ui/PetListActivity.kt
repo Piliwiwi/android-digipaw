@@ -1,11 +1,16 @@
 package com.arech.digipaw.pet.list.ui
 
+import android.Manifest
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.arech.digipaw.pet.list.ui.list.ListScreen
+import com.arech.digipaw.pet.list.ui.add.AddScreen
 import com.arech.uicomponents.theme.DigipawComposeTheme
 
 /**
@@ -17,7 +22,7 @@ class PetListActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             DigipawComposeTheme {
-                ListScreen()
+                AddScreen()
             }
         }
     }
