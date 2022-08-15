@@ -36,7 +36,7 @@ class PetListActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             DigipawComposeTheme {
-                AddScreen(viewModel, userIntents, DefaultUiState)
+                AddScreen(viewModel, userIntents)
             }
         }
     }

@@ -1,5 +1,6 @@
 package com.arech.digipaw.pet.list.ui.add
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -8,11 +9,16 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.material.Button
 import androidx.compose.material.Scaffold
+import androidx.compose.material.ScaffoldState
 import androidx.compose.material.Snackbar
+import androidx.compose.material.SnackbarHostState
 import androidx.compose.material.Text
+import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment.Companion.BottomCenter
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
@@ -24,6 +30,7 @@ import com.arech.digipaw.pet.list.presentation.AddViewModel
 import com.arech.digipaw.pet.list.presentation.add.AddUIntent
 import com.arech.digipaw.pet.list.presentation.add.AddUIntent.AddNewPetUIntent
 import com.arech.digipaw.pet.list.presentation.add.AddUiEffect
+import com.arech.digipaw.pet.list.presentation.add.AddUiEffect.DefaultUiEffect
 import com.arech.digipaw.pet.list.presentation.add.AddUiEffect.PetAddedUiEffect
 import com.arech.digipaw.pet.list.presentation.add.AddUiState
 import com.arech.digipaw.pet.list.presentation.add.AddUiState.DefaultUiState
@@ -40,6 +47,7 @@ import com.arech.utils.testing.RandomFactory.generateString
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 /**
@@ -52,35 +60,36 @@ import kotlinx.coroutines.launch
 fun AddScreen(
     viewModel: AddViewModel,
     userIntents: MutableSharedFlow<AddUIntent>,
-    state: AddUiState,
-    effect: AddUiEffect? = null
+    scaffoldState: ScaffoldState = rememberScaffoldState()
 ) {
-
-    when(state) {
-        DefaultUiState -> {}
-        ErrorUiState -> {}
-    }
-
-    when (effect) {
-        PetAddedUiEffect -> {
-            Snackbar(
-
-                action = {
-                    Button(onClick = {}) {
-                        Text("MyAction")
-                    }
-                },
-                modifier = Modifier.padding(8.dp)
-            ) { Text(text = "This is a snackbar!") }
-        }
-        else -> {}
-    }
+    val state: AddUiState by viewModel.uiStates().collectAsState()
+    val effect = viewModel.uiEffect()
 
     Scaffold(
+        scaffoldState = scaffoldState,
         topBar = {
             DigipawTopAppBar(text = "Agrega una Mascota")
         }
     ) {
+        when (state) {
+            DefaultUiState -> {}
+            ErrorUiState -> {}
+        }
+
+        LaunchedEffect(effect) {
+            effect.collect {
+                when (it) {
+                    PetAddedUiEffect -> {
+                        scaffoldState.snackbarHostState.showSnackbar(
+                            message = "hello world",
+                            actionLabel = "Retry"
+                        )
+                    }
+                    else -> {}
+                }
+            }
+        }
+
         Column(horizontalAlignment = CenterHorizontally) {
             Text(
                 modifier = Modifier

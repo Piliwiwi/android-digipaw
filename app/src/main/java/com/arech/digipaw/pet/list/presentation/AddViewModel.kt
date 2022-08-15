@@ -11,6 +11,7 @@ import com.arech.digipaw.pet.list.presentation.add.AddUIntent
 import com.arech.digipaw.pet.list.presentation.add.AddUIntent.AddNewPetRetryUIntent
 import com.arech.digipaw.pet.list.presentation.add.AddUIntent.AddNewPetUIntent
 import com.arech.digipaw.pet.list.presentation.add.AddUiEffect
+import com.arech.digipaw.pet.list.presentation.add.AddUiEffect.DefaultUiEffect
 import com.arech.digipaw.pet.list.presentation.add.AddUiEffect.PetAddedUiEffect
 import com.arech.digipaw.pet.list.presentation.add.AddUiState
 import com.arech.digipaw.pet.list.presentation.add.AddUiState.DefaultUiState
@@ -23,6 +24,7 @@ import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.buffer
 import kotlinx.coroutines.flow.flatMapMerge
 import kotlinx.coroutines.flow.launchIn
@@ -78,5 +80,5 @@ class AddViewModel @Inject constructor(
         }
 
     override fun uiStates() = uiState
-    override fun uiEffect() = uiEffect
+    override fun uiEffect() = uiEffect.asSharedFlow()
 }

@@ -7,5 +7,6 @@ import com.arech.mvi.events.MviEffect
  */
 
 sealed class AddUiEffect : MviEffect {
+    object DefaultUiEffect : AddUiEffect()
     object PetAddedUiEffect : AddUiEffect()
 }
