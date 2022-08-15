@@ -8,4 +8,8 @@
     <color name="ui_blue">#3E7DFA</color>
     <color name="ui_green">#3B9E46</color>
     <color name="ui_orange">#E86029</color>
+    <color name="ui_female">#FDCFF8</color>
+    <color name="ui_female_stroke">#FD8BF1</color>
+    <color name="ui_male">#ABDEF3</color>
+    <color name="ui_male_stroke">#34BEF6</color>
 </resources>

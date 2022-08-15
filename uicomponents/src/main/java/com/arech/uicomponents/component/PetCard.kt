@@ -4,6 +4,7 @@ import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -36,18 +37,19 @@ import com.arech.uicomponents.R
 
 @Composable
 fun PetCard(attrs: AttrsPetCard) {
+    val genderResource = getGenderResource(attrs.isMale)
     Card(
         modifier = Modifier,
         elevation = dimensionResource(id = R.dimen.ui_elevation_10),
-        border = BorderStroke(dimensionResource(id = R.dimen.ui_size_1), Color.Black)
+        border = BorderStroke(dimensionResource(id = R.dimen.ui_size_2), colorResource(id = genderResource.borderColor))
     ) {
-        PetCardContent(attrs)
+        PetCardContent(attrs, genderResource)
     }
 }
 
 @Composable
-fun PetCardContent(attrs: AttrsPetCard) {
-    Row(modifier = Modifier.padding(dimensionResource(id = R.dimen.ui_margin_16))) {
+private fun PetCardContent(attrs: AttrsPetCard, genderResource: GenderResource) {
+    Row(modifier = Modifier.background(color = colorResource(id = genderResource.backgroundColor)).padding(dimensionResource(id = R.dimen.ui_margin_16))) {
         Column(
             modifier = Modifier
                 .padding(end = dimensionResource(id = R.dimen.ui_margin_16))
@@ -66,7 +68,7 @@ fun PetCardContent(attrs: AttrsPetCard) {
                 textAlign = TextAlign.Center,
                 fontWeight = FontWeight.Bold,
                 fontSize = 18.sp,
-                text = "Misifus"
+                text = attrs.name
             )
         }
         Column() {
@@ -75,14 +77,14 @@ fun PetCardContent(attrs: AttrsPetCard) {
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(
-                    text = "Gato",
+                    text = attrs.animal,
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold
                 )
                 Row() {
                     Text(
                         modifier = Modifier.padding(end = dimensionResource(id = R.dimen.ui_margin_6)),
-                        text = "Romano",
+                        text = attrs.breed,
                         fontStyle = FontStyle.Italic,
                         fontWeight = FontWeight.Medium,
                         color = colorResource(id = R.color.ui_dark_gray),
@@ -90,14 +92,14 @@ fun PetCardContent(attrs: AttrsPetCard) {
                     )
                     Image(
                         modifier = Modifier.align(Alignment.CenterVertically),
-                        painter = painterResource(id = R.drawable.ic_male_symbol_14px),
+                        painter = painterResource(id = genderResource.icon),
                         contentDescription = null
                     )
                 }
             }
             Text(
                 modifier = Modifier.padding(top = dimensionResource(id = R.dimen.ui_margin_12)),
-                text = "4 años",
+                text = attrs.age,
                 fontStyle = FontStyle.Italic,
                 fontWeight = FontWeight.Medium,
                 color = colorResource(id = R.color.ui_dark_gray),
@@ -108,7 +110,7 @@ fun PetCardContent(attrs: AttrsPetCard) {
                 fontSize = 10.sp,
                 fontStyle = FontStyle.Italic,
                 color = colorResource(id = R.color.ui_gray),
-                text = "“Este gato duerme 16 horas al día le gusta jugar con pantuflas y comer bolsas de basura nuevas, peligroso”"
+                text = attrs.description
             )
         }
     }
@@ -126,10 +128,26 @@ fun PetCardPreview() {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            PetCard()
+            PetCard(
+                AttrsPetCard(
+                    name = "Misifus",
+                    animal = "Gato",
+                    breed = "Romano",
+                    isMale = true,
+                    age = "4 años",
+                    description = "“Este gato duerme 16 horas al día le gusta jugar con pantuflas y comer bolsas de basura nuevas, peligroso”"
+                )
+            )
         }
     }
 }
+
+private fun getGenderResource(isMale: Boolean): GenderResource =
+    GenderResource(
+        icon = if (isMale) R.drawable.ic_male_symbol_14dp else R.drawable.ic_female_symbol_17dp,
+        backgroundColor = if (isMale) R.color.ui_male else R.color.ui_female,
+        borderColor = if (isMale) R.color.ui_male_stroke else R.color.ui_female_stroke
+    )
 
 data class AttrsPetCard(
     val name: String,
