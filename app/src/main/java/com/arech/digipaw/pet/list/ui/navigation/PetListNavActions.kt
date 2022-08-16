@@ -6,12 +6,12 @@ import androidx.navigation.NavHostController
  * Created by Pili Arancibia on 15-08-22.
  */
 
-class PetListNavActions(private val navHostController: NavHostController) {
-    fun navToList() {
+class PetListNavActions(navHostController: NavHostController) {
+    val list: () -> Unit = {
         navHostController.navigate(PetListRoutes.List.path)
     }
 
-    fun navToAdd() {
+    val add: () -> Unit = {
         navHostController.navigate(PetListRoutes.Add.path)
     }
 }

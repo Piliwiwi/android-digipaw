@@ -43,7 +43,9 @@ fun ListScreen(
         floatingActionButtonPosition = FabPosition.End,
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { }
+                onClick = {
+                    navActions.add.invoke()
+                }
             ) {
                 Icon(imageVector = Icons.Default.Add, contentDescription = null)
             }
