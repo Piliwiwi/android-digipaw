@@ -7,6 +7,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.material.Surface
 import com.arech.digipaw.pet.list.presentation.AddViewModel
 import com.arech.digipaw.pet.list.presentation.ListViewModel
 import com.arech.digipaw.pet.list.presentation.add.AddUIntent
@@ -34,10 +35,12 @@ class PetListActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             DigipawComposeTheme {
-                PetListNavGraph(
-                    listViewModel = listViewModel,
-                    addViewModel = addViewModel
-                )
+                Surface {
+                    PetListNavGraph(
+                        listViewModel = listViewModel,
+                        addViewModel = addViewModel
+                    )
+                }
             }
         }
     }
