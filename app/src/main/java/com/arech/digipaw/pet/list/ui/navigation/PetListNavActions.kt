@@ -14,4 +14,8 @@ class PetListNavActions(private val navHostController: NavHostController) {
     fun navToAdd() {
         navHostController.navigate(PetListRoutes.Add.path)
     }
+
+    fun popBackStack() {
+        navHostController.popBackStack()
+    }
 }

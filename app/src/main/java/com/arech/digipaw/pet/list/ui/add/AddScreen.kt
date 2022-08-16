@@ -13,15 +13,12 @@ import androidx.compose.material.Text
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.State
 import androidx.compose.ui.Alignment.Companion.BottomCenter
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewModelScope
-import com.arech.digipaw.pet.list.presentation.add.AddUIntent.AddNewPetUIntent
 import com.arech.digipaw.pet.list.presentation.add.AddUiEffect
 import com.arech.digipaw.pet.list.presentation.add.AddUiEffect.PetAddedUiEffect
 import com.arech.digipaw.pet.list.presentation.add.AddUiState
@@ -40,7 +37,6 @@ import com.arech.utils.testing.RandomFactory.generateString
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.SharedFlow
-import kotlinx.coroutines.launch
 
 /**
  * Created by Pili Arancibia on 14-08-22.
@@ -60,7 +56,10 @@ fun AddScreen(
     Scaffold(
         scaffoldState = scaffoldState,
         topBar = {
-            DigipawTopAppBar(text = "Agrega una Mascota")
+            DigipawTopAppBar(
+                text = "Agrega una Mascota",
+                backArrowClick = { navActions.popBackStack() }
+            )
         }
     ) {
         when (state) {

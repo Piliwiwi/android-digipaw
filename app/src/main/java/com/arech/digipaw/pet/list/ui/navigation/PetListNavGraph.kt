@@ -1,15 +1,14 @@
 package com.arech.digipaw.pet.list.ui.navigation
 
-import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.rememberNavController
 import com.arech.digipaw.pet.list.presentation.AddViewModel
 import com.arech.digipaw.pet.list.presentation.ListViewModel
 import com.arech.digipaw.pet.list.ui.add.AddIntentHandler
 import com.arech.digipaw.pet.list.ui.list.ListIntentHandler
-import com.google.accompanist.navigation.animation.AnimatedNavHost
-import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 
@@ -19,14 +18,13 @@ import kotlinx.coroutines.FlowPreview
 
 @FlowPreview
 @ExperimentalCoroutinesApi
-@ExperimentalAnimationApi
 @Composable
 fun PetListNavGraph(
     listViewModel: ListViewModel,
     addViewModel: AddViewModel,
     startDestination: String = PetListRoutes.List.path
 ) {
-    val navController = rememberAnimatedNavController()
+    val navController = rememberNavController()
     val navActions = remember(navController) { PetListNavActions(navController) }
     val coroutineScope = rememberCoroutineScope()
 
@@ -37,7 +35,7 @@ fun PetListNavGraph(
         this.coroutineScope = coroutineScope
     }
 
-    AnimatedNavHost(
+    NavHost(
         navController = navController,
         startDestination = startDestination
     ) {

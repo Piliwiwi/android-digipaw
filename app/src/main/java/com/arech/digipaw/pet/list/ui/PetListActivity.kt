@@ -26,7 +26,6 @@ import kotlinx.coroutines.flow.asSharedFlow
 @AndroidEntryPoint
 @FlowPreview
 @ExperimentalCoroutinesApi
-@ExperimentalAnimationApi
 class PetListActivity : ComponentActivity() {
     private val addViewModel: AddViewModel by viewModels()
     private val listViewModel: ListViewModel by viewModels()
