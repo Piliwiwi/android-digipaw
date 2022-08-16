@@ -14,17 +14,27 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.arech.digipaw.pet.list.presentation.list.ListUiState
+import com.arech.digipaw.pet.list.ui.navigation.PetListNavActions
 import com.arech.uicomponents.component.AttrsPetCard
 import com.arech.uicomponents.groupcomponent.AttrsPetCardList
 import com.arech.uicomponents.groupcomponent.PetCardList
 import com.arech.uicomponents.navigation.DigipawTopAppBar
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
 
 /**
  * Created by Pili Arancibia on 14-08-22.
  */
 
+@FlowPreview
+@ExperimentalCoroutinesApi
 @Composable
-fun ListScreen() {
+fun ListScreen(
+    state: ListUiState,
+    intentHandler: ListIntentHandler,
+    navActions: PetListNavActions
+) {
     Scaffold(
         modifier = Modifier,
         topBar = {
@@ -193,5 +203,5 @@ fun ListScreen() {
 @Preview
 @Composable
 fun ListScreenPreview() {
-    ListScreen()
+    //ListScreen()
 }
