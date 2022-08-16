@@ -3,6 +3,7 @@ package com.arech.digipaw.pet.list.ui.navigation
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.arech.digipaw.pet.list.presentation.AddViewModel
@@ -29,10 +30,10 @@ fun PetListNavGraph(
     val coroutineScope = rememberCoroutineScope()
 
     val listIntentHandler = ListIntentHandler().apply {
-        this.coroutineScope = coroutineScope
+        this.coroutineScope = listViewModel.viewModelScope
     }
     val addIntentHandler = AddIntentHandler().apply {
-        this.coroutineScope = coroutineScope
+        this.coroutineScope = addViewModel.viewModelScope
     }
 
     NavHost(

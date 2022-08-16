@@ -30,9 +30,9 @@ fun NavGraphBuilder.listNav(
     composable(
         route = PetListRoutes.List.path
     ) {
-        val listUiState: ListUiState by viewModel.uiStates().collectAsState(initial = ListUiState.DefaultUiState)
-        viewModel.processUserIntents(intentHandler.userIntents())
-
+        val listUiState: ListUiState by viewModel.uiStates()
+            .collectAsState(initial = ListUiState.DefaultUiState)
+        
         ListScreen(
             state = listUiState,
             intentHandler = intentHandler,

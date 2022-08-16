@@ -21,9 +21,7 @@ import kotlinx.coroutines.launch
  */
 
 @ExperimentalCoroutinesApi
-class ListIntentHandler @Inject constructor(
-
-) {
+class ListIntentHandler @Inject constructor() {
     private val userIntents = MutableSharedFlow<ListUIntent>()
     var coroutineScope: CoroutineScope? = null
 
