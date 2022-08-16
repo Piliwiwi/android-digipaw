@@ -30,10 +30,10 @@ fun PetListNavGraph(
     val coroutineScope = rememberCoroutineScope()
 
     val listIntentHandler = ListIntentHandler().apply {
-        this.coroutineScope = listViewModel.viewModelScope
+        this.coroutineScope = coroutineScope
     }
     val addIntentHandler = AddIntentHandler().apply {
-        this.coroutineScope = addViewModel.viewModelScope
+        this.coroutineScope = coroutineScope
     }
 
     NavHost(

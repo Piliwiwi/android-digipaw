@@ -1,5 +1,6 @@
 package com.arech.digipaw.pet.list.ui.list
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -7,6 +8,7 @@ import androidx.compose.material.FabPosition
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
 import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
@@ -14,7 +16,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.arech.digipaw.pet.list.presentation.list.ListUiState
+import com.arech.digipaw.pet.list.presentation.list.ListUiState.DefaultUiState
+import com.arech.digipaw.pet.list.presentation.list.ListUiState.ErrorUiState
+import com.arech.digipaw.pet.list.presentation.list.ListUiState.LoadingUiState
+import com.arech.digipaw.pet.list.presentation.list.ListUiState.ShowPetCardListUiState
+import com.arech.digipaw.pet.list.presentation.model.Gender
+import com.arech.digipaw.pet.list.presentation.model.PetCard
 import com.arech.digipaw.pet.list.ui.navigation.PetListNavActions
 import com.arech.uicomponents.component.AttrsPetCard
 import com.arech.uicomponents.groupcomponent.AttrsPetCardList
@@ -52,154 +61,69 @@ fun ListScreen(
         },
         isFloatingActionButtonDocked = true
     ) {
-        Column(
-            modifier = Modifier.fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            PetCardList(
-                modifier = Modifier.padding(horizontal = 36.dp),
-                attrs = AttrsPetCardList(
-                    onclick = { navActions.navToDetail(it) },
-                    pets = listOf(
-                        AttrsPetCard(
-                            id = "1",
-                            name = "Peluo",
-                            animal = "Gato",
-                            breed = "Pelo",
-                            isMale = true,
-                            age = "4 años",
-                            description = "“Este gato duerme 16 horas al día le gusta jugar con pantuflas y comer bolsas de basura nuevas, peligroso”"
-                        ),
-                        AttrsPetCard(
-                            id = "2",
-                            name = "Siri",
-                            animal = "Gata",
-                            breed = "Apple",
-                            isMale = false,
-                            age = "2 años",
-                            description = "“Este gato duerme 16 horas al día le gusta jugar con pantuflas y comer bolsas de basura nuevas, peligroso”"
-                        ),
-                        AttrsPetCard(
-                            id = "3",
-                            name = "Bicho",
-                            animal = "Gato",
-                            breed = "Insecto",
-                            isMale = true,
-                            age = "4 años",
-                            description = "“Este gato duerme 16 horas al día le gusta jugar con pantuflas y comer bolsas de basura nuevas, peligroso”"
-                        ),
-                        AttrsPetCard(
-                            id = "4",
-                            name = "Peluo",
-                            animal = "Gato",
-                            breed = "Pelo",
-                            isMale = true,
-                            age = "4 años",
-                            description = "“Este gato duerme 16 horas al día le gusta jugar con pantuflas y comer bolsas de basura nuevas, peligroso”"
-                        ),
-                        AttrsPetCard(
-                            id = "5",
-                            name = "Siri",
-                            animal = "Gata",
-                            breed = "Apple",
-                            isMale = false,
-                            age = "2 años",
-                            description = "“Este gato duerme 16 horas al día le gusta jugar con pantuflas y comer bolsas de basura nuevas, peligroso”"
-                        ),
-                        AttrsPetCard(
-                            id = "6",
-                            name = "Bicho",
-                            animal = "Gato",
-                            breed = "Insecto",
-                            isMale = true,
-                            age = "4 años",
-                            description = "“Este gato duerme 16 horas al día le gusta jugar con pantuflas y comer bolsas de basura nuevas, peligroso”"
-                        ),
-                        AttrsPetCard(
-                            id = "7",
-                            name = "Peluo",
-                            animal = "Gato",
-                            breed = "Pelo",
-                            isMale = true,
-                            age = "4 años",
-                            description = "“Este gato duerme 16 horas al día le gusta jugar con pantuflas y comer bolsas de basura nuevas, peligroso”"
-                        ),
-                        AttrsPetCard(
-                            id = "8",
-                            name = "Siri",
-                            animal = "Gata",
-                            breed = "Apple",
-                            isMale = false,
-                            age = "2 años",
-                            description = "“Este gato duerme 16 horas al día le gusta jugar con pantuflas y comer bolsas de basura nuevas, peligroso”"
-                        ),
-                        AttrsPetCard(
-                            id = "9",
-                            name = "Bicho",
-                            animal = "Gato",
-                            breed = "Insecto",
-                            isMale = true,
-                            age = "4 años",
-                            description = "“Este gato duerme 16 horas al día le gusta jugar con pantuflas y comer bolsas de basura nuevas, peligroso”"
-                        ),
-                        AttrsPetCard(
-                            id = "10",
-                            name = "Peluo",
-                            animal = "Gato",
-                            breed = "Pelo",
-                            isMale = true,
-                            age = "4 años",
-                            description = "“Este gato duerme 16 horas al día le gusta jugar con pantuflas y comer bolsas de basura nuevas, peligroso”"
-                        ),
-                        AttrsPetCard(
-                            id = "11",
-                            name = "Siri",
-                            animal = "Gata",
-                            breed = "Apple",
-                            isMale = false,
-                            age = "2 años",
-                            description = "“Este gato duerme 16 horas al día le gusta jugar con pantuflas y comer bolsas de basura nuevas, peligroso”"
-                        ),
-                        AttrsPetCard(
-                            id = "12",
-                            name = "Bicho",
-                            animal = "Gato",
-                            breed = "Insecto",
-                            isMale = true,
-                            age = "4 años",
-                            description = "“Este gato duerme 16 horas al día le gusta jugar con pantuflas y comer bolsas de basura nuevas, peligroso”"
-                        ),
-                        AttrsPetCard(
-                            id = "13",
-                            name = "Peluo",
-                            animal = "Gato",
-                            breed = "Pelo",
-                            isMale = true,
-                            age = "4 años",
-                            description = "“Este gato duerme 16 horas al día le gusta jugar con pantuflas y comer bolsas de basura nuevas, peligroso”"
-                        ),
-                        AttrsPetCard(
-                            id = "14",
-                            name = "Siri",
-                            animal = "Gata",
-                            breed = "Apple",
-                            isMale = false,
-                            age = "2 años",
-                            description = "“Este gato duerme 16 horas al día le gusta jugar con pantuflas y comer bolsas de basura nuevas, peligroso”"
-                        ),
-                        AttrsPetCard(
-                            id = "15",
-                            name = "Bicho",
-                            animal = "Gato",
-                            breed = "Insecto",
-                            isMale = true,
-                            age = "4 años",
-                            description = "“Este gato duerme 16 horas al día le gusta jugar con pantuflas y comer bolsas de basura nuevas, peligroso”"
-                        )
-                    )
-                )
-            )
+        when (state) {
+            DefaultUiState -> {}
+            ErrorUiState -> ErrorView()
+            LoadingUiState -> LoadingView()
+            is ShowPetCardListUiState -> PetList(data = state.pets,navActions = navActions)
         }
+    }
+}
+
+@Composable
+fun ListScreenContent() {
+
+}
+
+@Composable
+fun LoadingView() {
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
+        Text(
+            text = "Loading..",
+            fontSize = 18.sp
+        )
+    }
+}
+
+@Composable
+fun ErrorView() {
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
+        Text(
+            text = "ERROR",
+            fontSize = 18.sp
+        )
+    }
+}
+
+@Composable
+fun PetList(data: List<PetCard>, navActions: PetListNavActions) {
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        PetCardList(
+            modifier = Modifier.padding(horizontal = 36.dp),
+            attrs = AttrsPetCardList(
+                onclick = { navActions.navToDetail(it) },
+                pets = data.map {
+                    AttrsPetCard(
+                        id = it.id,
+                        name = it.name,
+                        age = it.age.description,
+                        breed = it.breed,
+                        description = it.description,
+                        isMale = it.gender.type == Gender.Male.type,
+                        animal = it.animal
+                    )
+                }
+            )
+        )
     }
 }
 
