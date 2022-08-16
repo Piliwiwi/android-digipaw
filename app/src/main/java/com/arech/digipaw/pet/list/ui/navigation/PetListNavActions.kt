@@ -15,6 +15,10 @@ class PetListNavActions(private val navHostController: NavHostController) {
         navHostController.navigate(PetListRoutes.Add.path)
     }
 
+    fun navToDetail(petId: String) {
+        navHostController.navigate(PetListRoutes.Detail().path + "/$petId")
+    }
+
     fun popBackStack() {
         navHostController.popBackStack()
     }

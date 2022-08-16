@@ -11,7 +11,6 @@ import com.arech.digipaw.pet.list.presentation.add.AddUIntent
 import com.arech.digipaw.pet.list.presentation.add.AddUIntent.AddNewPetRetryUIntent
 import com.arech.digipaw.pet.list.presentation.add.AddUIntent.AddNewPetUIntent
 import com.arech.digipaw.pet.list.presentation.add.AddUiEffect
-import com.arech.digipaw.pet.list.presentation.add.AddUiEffect.DefaultUiEffect
 import com.arech.digipaw.pet.list.presentation.add.AddUiEffect.PetAddedUiEffect
 import com.arech.digipaw.pet.list.presentation.add.AddUiState
 import com.arech.digipaw.pet.list.presentation.add.AddUiState.DefaultUiState

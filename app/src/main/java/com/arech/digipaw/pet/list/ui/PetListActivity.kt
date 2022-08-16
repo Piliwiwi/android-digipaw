@@ -44,22 +44,6 @@ class PetListActivity : ComponentActivity() {
         }
     }
 
-//    override fun onStart() {
-//        super.onStart()
-//        subscribeStatesProcessIntents()
-//    }
-//
-//    private fun subscribeStatesProcessIntents() {
-//        addViewModel.processUserIntents(userIntents.asSharedFlow())
-//    }
-
-    private fun setupObservers() {
-//        with(viewModel) {
-//            uiStates().onEach { AddScreen(viewModel, userIntents, DefaultUiState) }.launchIn(lifecycleScope)
-//            uiEffect().onEach { renderUiStates(it) }.launchIn(lifecycleScope)
-//        }
-    }
-
     companion object {
         fun makeIntent(context: Context) = Intent(context, PetListActivity::class.java)
     }

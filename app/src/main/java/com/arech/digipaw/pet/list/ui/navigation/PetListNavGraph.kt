@@ -49,5 +49,8 @@ fun PetListNavGraph(
             intentHandler = addIntentHandler,
             navActions = navActions
         )
+        detailNav(
+            navActions = navActions
+        )
     }
 }

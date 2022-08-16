@@ -59,7 +59,7 @@ fun ListScreen(
             PetCardList(
                 modifier = Modifier.padding(horizontal = 36.dp),
                 attrs = AttrsPetCardList(
-                    onclick = { navActions.navToAdd() },
+                    onclick = { navActions.navToDetail(it) },
                     pets = listOf(
                         AttrsPetCard(
                             id = "1",
@@ -71,7 +71,7 @@ fun ListScreen(
                             description = "“Este gato duerme 16 horas al día le gusta jugar con pantuflas y comer bolsas de basura nuevas, peligroso”"
                         ),
                         AttrsPetCard(
-                            id = "1",
+                            id = "2",
                             name = "Siri",
                             animal = "Gata",
                             breed = "Apple",
@@ -80,7 +80,7 @@ fun ListScreen(
                             description = "“Este gato duerme 16 horas al día le gusta jugar con pantuflas y comer bolsas de basura nuevas, peligroso”"
                         ),
                         AttrsPetCard(
-                            id = "1",
+                            id = "3",
                             name = "Bicho",
                             animal = "Gato",
                             breed = "Insecto",
@@ -89,7 +89,7 @@ fun ListScreen(
                             description = "“Este gato duerme 16 horas al día le gusta jugar con pantuflas y comer bolsas de basura nuevas, peligroso”"
                         ),
                         AttrsPetCard(
-                            id = "1",
+                            id = "4",
                             name = "Peluo",
                             animal = "Gato",
                             breed = "Pelo",
@@ -98,7 +98,7 @@ fun ListScreen(
                             description = "“Este gato duerme 16 horas al día le gusta jugar con pantuflas y comer bolsas de basura nuevas, peligroso”"
                         ),
                         AttrsPetCard(
-                            id = "1",
+                            id = "5",
                             name = "Siri",
                             animal = "Gata",
                             breed = "Apple",
@@ -107,7 +107,7 @@ fun ListScreen(
                             description = "“Este gato duerme 16 horas al día le gusta jugar con pantuflas y comer bolsas de basura nuevas, peligroso”"
                         ),
                         AttrsPetCard(
-                            id = "1",
+                            id = "6",
                             name = "Bicho",
                             animal = "Gato",
                             breed = "Insecto",
@@ -116,7 +116,7 @@ fun ListScreen(
                             description = "“Este gato duerme 16 horas al día le gusta jugar con pantuflas y comer bolsas de basura nuevas, peligroso”"
                         ),
                         AttrsPetCard(
-                            id = "1",
+                            id = "7",
                             name = "Peluo",
                             animal = "Gato",
                             breed = "Pelo",
@@ -125,7 +125,7 @@ fun ListScreen(
                             description = "“Este gato duerme 16 horas al día le gusta jugar con pantuflas y comer bolsas de basura nuevas, peligroso”"
                         ),
                         AttrsPetCard(
-                            id = "1",
+                            id = "8",
                             name = "Siri",
                             animal = "Gata",
                             breed = "Apple",
@@ -134,7 +134,7 @@ fun ListScreen(
                             description = "“Este gato duerme 16 horas al día le gusta jugar con pantuflas y comer bolsas de basura nuevas, peligroso”"
                         ),
                         AttrsPetCard(
-                            id = "1",
+                            id = "9",
                             name = "Bicho",
                             animal = "Gato",
                             breed = "Insecto",
@@ -143,7 +143,7 @@ fun ListScreen(
                             description = "“Este gato duerme 16 horas al día le gusta jugar con pantuflas y comer bolsas de basura nuevas, peligroso”"
                         ),
                         AttrsPetCard(
-                            id = "1",
+                            id = "10",
                             name = "Peluo",
                             animal = "Gato",
                             breed = "Pelo",
@@ -152,7 +152,7 @@ fun ListScreen(
                             description = "“Este gato duerme 16 horas al día le gusta jugar con pantuflas y comer bolsas de basura nuevas, peligroso”"
                         ),
                         AttrsPetCard(
-                            id = "1",
+                            id = "11",
                             name = "Siri",
                             animal = "Gata",
                             breed = "Apple",
@@ -161,7 +161,7 @@ fun ListScreen(
                             description = "“Este gato duerme 16 horas al día le gusta jugar con pantuflas y comer bolsas de basura nuevas, peligroso”"
                         ),
                         AttrsPetCard(
-                            id = "1",
+                            id = "12",
                             name = "Bicho",
                             animal = "Gato",
                             breed = "Insecto",
@@ -170,7 +170,7 @@ fun ListScreen(
                             description = "“Este gato duerme 16 horas al día le gusta jugar con pantuflas y comer bolsas de basura nuevas, peligroso”"
                         ),
                         AttrsPetCard(
-                            id = "1",
+                            id = "13",
                             name = "Peluo",
                             animal = "Gato",
                             breed = "Pelo",
@@ -179,7 +179,7 @@ fun ListScreen(
                             description = "“Este gato duerme 16 horas al día le gusta jugar con pantuflas y comer bolsas de basura nuevas, peligroso”"
                         ),
                         AttrsPetCard(
-                            id = "1",
+                            id = "14",
                             name = "Siri",
                             animal = "Gata",
                             breed = "Apple",
@@ -188,7 +188,7 @@ fun ListScreen(
                             description = "“Este gato duerme 16 horas al día le gusta jugar con pantuflas y comer bolsas de basura nuevas, peligroso”"
                         ),
                         AttrsPetCard(
-                            id = "1",
+                            id = "15",
                             name = "Bicho",
                             animal = "Gato",
                             breed = "Insecto",

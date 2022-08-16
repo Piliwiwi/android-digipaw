@@ -1,6 +1,5 @@
 package com.arech.digipaw.pet.list.ui.add
 
-import androidx.compose.animation.ExperimentalAnimationApi
 import com.arech.digipaw.pet.list.presentation.add.AddUIntent
 import com.arech.digipaw.pet.list.presentation.add.AddUIntent.AddNewPetUIntent
 import com.arech.digipaw.pet.list.presentation.model.PetCard

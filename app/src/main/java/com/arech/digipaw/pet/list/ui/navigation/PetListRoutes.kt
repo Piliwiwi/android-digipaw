@@ -5,6 +5,7 @@ package com.arech.digipaw.pet.list.ui.navigation
  */
 
 sealed class PetListRoutes(val path: String) {
-    object List : PetListRoutes(path = "List")
-    object Add : PetListRoutes(path = "Add")
+    object List : PetListRoutes(path = "list")
+    object Add : PetListRoutes(path = "add")
+    data class Detail(val argument: String = "petId"): PetListRoutes(path = "detail")
 }
