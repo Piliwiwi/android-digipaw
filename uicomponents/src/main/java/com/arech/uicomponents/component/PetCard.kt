@@ -39,7 +39,7 @@ import com.arech.uicomponents.R
 fun PetCard(modifier: Modifier = Modifier, attrs: AttrsPetCard) {
     val genderResource = getGenderResource(attrs.isMale)
     Card(
-        modifier = modifier.clickable { attrs.onclick },
+        modifier = modifier.clickable { attrs.onclick(attrs.id) },
         elevation = dimensionResource(id = R.dimen.ui_elevation_10),
         border = BorderStroke(
             dimensionResource(id = R.dimen.ui_size_2),

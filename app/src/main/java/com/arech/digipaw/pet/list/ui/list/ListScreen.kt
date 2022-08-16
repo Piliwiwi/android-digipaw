@@ -59,6 +59,7 @@ fun ListScreen(
             PetCardList(
                 modifier = Modifier.padding(horizontal = 36.dp),
                 attrs = AttrsPetCardList(
+                    onclick = { navActions.navToAdd() },
                     pets = listOf(
                         AttrsPetCard(
                             id = "1",

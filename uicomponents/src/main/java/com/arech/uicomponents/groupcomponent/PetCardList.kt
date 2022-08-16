@@ -1,5 +1,6 @@
 package com.arech.uicomponents.groupcomponent
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -23,10 +24,9 @@ import com.arech.uicomponents.component.PetCard
 fun PetCardList(modifier: Modifier = Modifier, attrs: AttrsPetCardList) {
     LazyColumn(modifier) {
         items(attrs.pets) { pet ->
-            pet.onclick = attrs.onclick
             PetCard(
                 modifier = Modifier.padding(top = dimensionResource(id = R.dimen.ui_margin_12)),
-                attrs = pet
+                attrs = pet.apply { pet.onclick = attrs.onclick }
             )
         }
     }
