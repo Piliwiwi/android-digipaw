@@ -44,7 +44,7 @@ fun ListScreen(
         floatingActionButton = {
             FloatingActionButton(
                 onClick = {
-                    navActions.add.invoke()
+                    navActions.navToAdd()
                 }
             ) {
                 Icon(imageVector = Icons.Default.Add, contentDescription = null)
