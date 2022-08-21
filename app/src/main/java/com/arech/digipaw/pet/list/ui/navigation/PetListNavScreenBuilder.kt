@@ -2,6 +2,7 @@ package com.arech.digipaw.pet.list.ui.navigation
 
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 import androidx.compose.runtime.remember
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
@@ -30,11 +31,10 @@ fun NavGraphBuilder.listNav(
     composable(
         route = PetListRoutes.List.path
     ) {
-        val listUiState: ListUiState by viewModel.uiStates()
-            .collectAsState(initial = ListUiState.DefaultUiState)
-        remember {
-            viewModel.processUserIntents(intentHandler.userIntents())
-        }
+        val listUiState by remember {
+            intentHandler.initialUintent()
+            viewModel.uiStates()
+        }.collectAsState(initial = ListUiState.DefaultUiState)
 
         ListScreen(
             state = listUiState,
@@ -51,10 +51,9 @@ fun NavGraphBuilder.addNav(
     composable(
         route = PetListRoutes.Add.path
     ) {
-        val addUiState: AddUiState by viewModel.uiStates().collectAsState(initial = DefaultUiState)
-        remember {
-            viewModel.processUserIntents(intentHandler.userIntents())
-        }
+        val addUiState by remember {
+            viewModel.uiStates()
+        }.collectAsState(initial = DefaultUiState)
 
         val addUiEffect = viewModel.uiEffect()
 

@@ -47,12 +47,8 @@ class AddViewModel @Inject constructor(
     private val uiState: MutableStateFlow<AddUiState> = MutableStateFlow(defaultUiState)
     private val uiEffect: MutableSharedFlow<AddUiEffect> = MutableSharedFlow()
 
-    override fun processUserIntents(userIntents: Flow<AddUIntent>) {
-        userIntents
-            .buffer()
-            .flatMapMerge { userIntent ->
-                processor.actionProcessor(userIntent.toAction())
-            }
+    override fun processUserIntents(userIntent: AddUIntent) {
+        processor.actionProcessor(userIntent.toAction())
             .handleEffect()
             .scan(defaultUiState) { currentUiState, result ->
                 with(reducer) { currentUiState reduce result }

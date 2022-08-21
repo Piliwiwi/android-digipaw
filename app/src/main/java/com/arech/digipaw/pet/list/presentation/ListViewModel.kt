@@ -38,12 +38,8 @@ class ListViewModel @Inject constructor(
     private val defaultUiState: ListUiState = DefaultUiState
     private val uiState: MutableStateFlow<ListUiState> = MutableStateFlow(defaultUiState)
 
-    override fun processUserIntents(userIntents: Flow<ListUIntent>) {
-        userIntents
-            .buffer()
-            .flatMapMerge { userIntent ->
-                processor.actionProcessor(userIntent.toAction())
-            }
+    override fun processUserIntents(userIntent: ListUIntent) {
+        processor.actionProcessor(userIntent.toAction())
             .scan(defaultUiState) { currentUiState, result ->
                 with(reducer) { currentUiState reduce result }
             }
