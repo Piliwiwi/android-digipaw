@@ -9,10 +9,6 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 
-/**
- * Created by Pili Arancibia on 14-08-22.
- */
-
 @Composable
 fun InputPaw(modifier: Modifier = Modifier, attrs: AttrsInputPaw) {
     var text by rememberSaveable {

@@ -11,8 +11,13 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.ScaffoldState
 import androidx.compose.material.Text
 import androidx.compose.material.rememberScaffoldState
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment.Companion.BottomCenter
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
@@ -59,7 +64,7 @@ fun AddScreen(
         }
     ) {
         when (state) {
-            DefaultUiState -> {}
+            DefaultUiState -> AddContent(intentHandler)
             ErrorUiState -> {}
         }
 
@@ -76,57 +81,65 @@ fun AddScreen(
                 }
             }
         }
+    }
+}
 
-        Column(horizontalAlignment = CenterHorizontally) {
-            Text(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = 12.dp),
-                textAlign = TextAlign.Center,
-                fontSize = 18.sp,
-                text = "¡Sube su mejor foto!"
-            )
-            AvatarSelector(
-                modifier = Modifier.wrapContentWidth(align = CenterHorizontally),
-                attrs = AttrsAvatarSelector()
-            )
+@Composable
+fun AddContent(intentHandler: AddIntentHandler) {
+    var name by remember { mutableStateOf("") }
 
-            InputPaw(
-                modifier = Modifier.padding(top = 18.dp),
-                attrs = AttrsInputPaw(
-                    placeholder = "Nombre",
-                    singleLine = true
-                )
-            )
-        }
-
-        Box(
+    Column(horizontalAlignment = CenterHorizontally) {
+        Text(
             modifier = Modifier
-                .fillMaxSize()
-                .padding(bottom = 12.dp),
-            contentAlignment = BottomCenter
-        ) {
-            Button(
-                onClick = {
-                    intentHandler.addNewPetUIntent(
-                        PetCard(
-                            id = generateString(),
-                            breed = "Raza",
-                            description = "Descripcion",
-                            animal = "Animal",
-                            age = Age(value = 4, "4 años"),
-                            gender = Gender.Female,
-                            name = generateString(),
-                            photo = ""
-                        )
-                    )
+                .fillMaxWidth()
+                .padding(vertical = 12.dp),
+            textAlign = TextAlign.Center,
+            fontSize = 18.sp,
+            text = "¡Sube su mejor foto!"
+        )
+        AvatarSelector(
+            modifier = Modifier.wrapContentWidth(align = CenterHorizontally),
+            attrs = AttrsAvatarSelector()
+        )
+
+        InputPaw(
+            modifier = Modifier.padding(top = 18.dp),
+            attrs = AttrsInputPaw(
+                placeholder = "Nombre",
+                singleLine = true,
+                onTextChange = {
+                    name = it
                 }
-            ) {
-                Text(
-                    text = "¡Añadir!",
-                    fontSize = 18.sp
+            )
+        )
+    }
+
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(bottom = 12.dp),
+        contentAlignment = BottomCenter
+    ) {
+        Button(
+            onClick = {
+                intentHandler.addNewPetUIntent(
+                    PetCard(
+                        id = generateString(),
+                        breed = "Raza",
+                        description = "Descripcion",
+                        animal = "Animal",
+                        age = Age(value = 4, "4 años"),
+                        gender = Gender.Female,
+                        name = name,
+                        photo = ""
+                    )
                 )
             }
+        ) {
+            Text(
+                text = "¡Añadir!",
+                fontSize = 18.sp
+            )
         }
     }
 }
