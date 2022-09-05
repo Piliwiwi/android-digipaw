@@ -32,8 +32,7 @@ fun NavGraphBuilder.listNav(
         route = PetListRoutes.List.path
     ) {
         val listUiState by remember {
-            intentHandler.initialUintent()
-            viewModel.uiStates()
+            viewModel.processAndObserveUserIntents(intentHandler.userIntents())
         }.collectAsState(initial = ListUiState.DefaultUiState)
 
         ListScreen(
@@ -52,7 +51,7 @@ fun NavGraphBuilder.addNav(
         route = PetListRoutes.Add.path
     ) {
         val addUiState by remember {
-            viewModel.uiStates()
+            viewModel.processAndObserveUserIntents(intentHandler.userIntents())
         }.collectAsState(initial = DefaultUiState)
 
         val addUiEffect = viewModel.uiEffect()

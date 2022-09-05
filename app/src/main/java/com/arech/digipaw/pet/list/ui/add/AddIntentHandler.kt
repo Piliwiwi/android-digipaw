@@ -20,13 +20,18 @@ import kotlinx.coroutines.launch
 @FlowPreview
 @ExperimentalCoroutinesApi
 class AddIntentHandler @Inject constructor() {
-    var viewModel: AddViewModel? = null
+    private val userIntents = MutableSharedFlow<AddUIntent>()
+    var coroutineScope: CoroutineScope? = null
+
+    fun userIntents(): Flow<AddUIntent> = userIntents.asSharedFlow()
 
     fun addNewPetUIntent(newPet: PetCard) {
         emit(AddNewPetUIntent(newPet))
     }
 
     private fun emit(intent: AddUIntent) {
-        viewModel?.processUserIntents(intent)
+        coroutineScope?.launch {
+            userIntents.emit(intent)
+        }
     }
 }

@@ -38,10 +38,6 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.SharedFlow
 
-/**
- * Created by Pili Arancibia on 14-08-22.
- */
-
 @ExperimentalCoroutinesApi
 @FlowPreview
 @Composable
