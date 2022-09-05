@@ -1,7 +1,6 @@
 package com.arech.digipaw.pet.list.presentation
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.arech.digipaw.pet.list.presentation.list.ListAction.LoadPetCardListAction
 import com.arech.digipaw.pet.list.presentation.list.ListProcessor
 import com.arech.digipaw.pet.list.presentation.list.ListReducer
@@ -13,22 +12,13 @@ import com.arech.digipaw.pet.list.presentation.list.ListUiState.DefaultUiState
 import com.arech.mvi.MviPresentation
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.buffer
 import kotlinx.coroutines.flow.flatMapMerge
-import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.scan
-
-/**
- * Created by Pili Arancibia on 14-08-22.
- */
 
 @FlowPreview
 @ExperimentalCoroutinesApi
