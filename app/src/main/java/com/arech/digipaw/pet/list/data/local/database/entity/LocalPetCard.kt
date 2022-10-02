@@ -4,10 +4,6 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-/**
- * Created by Pili Arancibia on 15-08-22.
- */
-
 @Entity
 data class LocalPetCard(
     @PrimaryKey val id: String,

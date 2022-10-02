@@ -9,10 +9,6 @@ import com.arech.digipaw.pet.list.presentation.model.Gender.Unknown
 import com.arech.digipaw.pet.list.presentation.model.PetCard
 import javax.inject.Inject
 
-/**
- * Created by Pili Arancibia on 15-08-22.
- */
-
 class PetCardMapper @Inject constructor() {
     fun List<LocalPetCard>.toPresentation() = map {
         it.toPresentation()

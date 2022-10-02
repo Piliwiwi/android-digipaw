@@ -9,10 +9,6 @@ import com.arech.mvi.MviReducer
 import com.arech.mvi.exception.UnsupportedReduceException
 import javax.inject.Inject
 
-/**
- * Created by Pili Arancibia on 15-08-22.
- */
-
 class AddReducer @Inject constructor() : MviReducer<AddUiState, AddResult> {
     override fun AddUiState.reduce(result: AddResult): AddUiState {
         return when (val currentState = this) {

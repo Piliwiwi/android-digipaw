@@ -6,10 +6,6 @@ import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
-/**
- * Created by Pili Arancibia on 14-08-22.
- */
-
 class PetListDataRepository @Inject constructor(
     private val local: PetListLocal
 ) {

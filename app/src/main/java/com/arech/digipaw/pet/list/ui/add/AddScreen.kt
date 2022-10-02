@@ -85,7 +85,7 @@ fun AddScreen(
 
 @Composable
 fun AddContent(intentHandler: AddIntentHandler) {
-    var photo: Uri? by remember { mutableStateOf(null) }
+    var photo: String? by remember { mutableStateOf(null) }
     var name by remember { mutableStateOf("") }
     var description by remember { mutableStateOf("") }
     var animal by remember { mutableStateOf("") }
@@ -106,7 +106,7 @@ fun AddContent(intentHandler: AddIntentHandler) {
             modifier = Modifier.wrapContentWidth(align = CenterHorizontally),
             attrs = AttrsAvatarSelector(
                 onSelectAvatar = {
-                    photo = it
+                    photo = it?.toString()
                 }
             )
         )
@@ -196,8 +196,7 @@ fun AddContent(intentHandler: AddIntentHandler) {
                         age = Age(value = 4, "4 años"),
                         gender = gender,
                         name = name,
-                        photo = "",
-                        uriPhoto = photo
+                        photo = photo.orEmpty(),
                     )
                 )
             }

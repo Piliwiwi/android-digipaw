@@ -15,10 +15,6 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.onStart
 
-/**
- * Created by Pili Arancibia on 15-08-22.
- */
-
 @FlowPreview
 class ListProcessor @Inject constructor(
     private val repository: PetListDataRepository,

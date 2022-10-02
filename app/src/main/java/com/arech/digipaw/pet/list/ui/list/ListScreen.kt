@@ -32,10 +32,6 @@ import com.arech.uicomponents.navigation.DigipawTopAppBar
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 
-/**
- * Created by Pili Arancibia on 14-08-22.
- */
-
 @FlowPreview
 @ExperimentalCoroutinesApi
 @Composable
@@ -120,7 +116,7 @@ fun PetList(data: List<PetCard>, navActions: PetListNavActions) {
                         description = it.description,
                         isMale = it.gender.type == Gender.Male.type,
                         animal = it.animal,
-                        uriPhoto = it.uriPhoto
+                        photo = it.photo
                     )
                 }
             )

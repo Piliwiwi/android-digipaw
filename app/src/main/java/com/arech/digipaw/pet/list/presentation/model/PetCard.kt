@@ -1,11 +1,5 @@
 package com.arech.digipaw.pet.list.presentation.model
 
-import android.net.Uri
-
-/**
- * Created by Pili Arancibia on 15-08-22.
- */
-
 data class PetCard(
     val id: String,
     val name: String,
@@ -15,7 +9,6 @@ data class PetCard(
     val age: Age,
     val description: String,
     val photo: String,
-    val uriPhoto: Uri? = null
 )
 
 data class Age(

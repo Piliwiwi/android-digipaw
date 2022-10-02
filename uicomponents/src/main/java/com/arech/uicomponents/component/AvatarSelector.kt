@@ -26,12 +26,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
+import coil.request.CachePolicy
 import coil.request.ImageRequest
 import com.arech.uicomponents.R
-
-/**
- * Created by Pili Arancibia on 15-08-22.
- */
 
 @Composable
 fun AvatarSelector(modifier: Modifier = Modifier, attrs: AttrsAvatarSelector) {

@@ -1,6 +1,5 @@
 package com.arech.uicomponents.groupcomponent
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -15,10 +14,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.arech.uicomponents.R
 import com.arech.uicomponents.component.AttrsPetCard
 import com.arech.uicomponents.component.PetCard
-
-/**
- * Created by Pili Arancibia on 14-08-22.
- */
 
 @Composable
 fun PetCardList(modifier: Modifier = Modifier, attrs: AttrsPetCardList) {

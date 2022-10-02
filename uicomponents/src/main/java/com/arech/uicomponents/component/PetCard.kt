@@ -1,6 +1,5 @@
 package com.arech.uicomponents.component
 
-import android.net.Uri
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.BorderStroke
@@ -15,12 +14,14 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Card
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
@@ -31,13 +32,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
+import androidx.core.net.toUri
 import coil.compose.rememberAsyncImagePainter
+import coil.request.CachePolicy
 import coil.request.ImageRequest
 import com.arech.uicomponents.R
-
-/**
- * Created by Pili Arancibia on 14-08-22.
- */
 
 @Composable
 fun PetCard(modifier: Modifier = Modifier, attrs: AttrsPetCard) {
@@ -72,15 +71,20 @@ private fun PetCardContent(attrs: AttrsPetCard, genderResource: GenderResource) 
             Image(
                 modifier = Modifier
                     .height(dimensionResource(id = R.dimen.ui_size_89))
-                    .fillMaxWidth(),
-                painter = if (attrs.uriPhoto == null) painterResource(id = R.drawable.cat_example) else rememberAsyncImagePainter(
+                    .fillMaxWidth()
+                    .clip(CircleShape),
+                painter = if (attrs.photo.isNullOrEmpty()) painterResource(id = R.drawable.cat_example) else rememberAsyncImagePainter(
                     ImageRequest
                         .Builder(LocalContext.current)
-                        .data(data = attrs.uriPhoto)
+                        .data(data = attrs.photo.toUri())
+                        .allowHardware(false)
+                        .error(R.drawable.cat_example)
+                        .diskCachePolicy(CachePolicy.ENABLED)
+                        .memoryCachePolicy(CachePolicy.ENABLED)
                         .build()
                 ),
-                contentScale = ContentScale.Fit,
-                contentDescription = null
+                contentScale = ContentScale.Crop,
+                contentDescription = null,
             )
             Text(
                 modifier = Modifier.fillMaxWidth(),
@@ -172,7 +176,7 @@ private fun getGenderResource(isMale: Boolean): GenderResource =
 data class AttrsPetCard(
     val id: String,
     val name: String,
-    val uriPhoto: Uri? = null,
+    val photo: String? = null,
     val animal: String,
     val breed: String,
     val isMale: Boolean,

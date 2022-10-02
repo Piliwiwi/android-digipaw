@@ -7,10 +7,6 @@ import com.arech.digipaw.pet.list.data.source.PetListLocal
 import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 
-/**
- * Created by Pili Arancibia on 15-08-22.
- */
-
 class PetListLocalImpl @Inject constructor(
     private val dao: LocalRoomPetDao
 ) : PetListLocal {

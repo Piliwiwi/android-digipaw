@@ -14,10 +14,6 @@ import com.arech.digipaw.pet.list.ui.list.ListIntentHandler
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 
-/**
- * Created by Pili Arancibia on 15-08-22.
- */
-
 @FlowPreview
 @ExperimentalCoroutinesApi
 @Composable

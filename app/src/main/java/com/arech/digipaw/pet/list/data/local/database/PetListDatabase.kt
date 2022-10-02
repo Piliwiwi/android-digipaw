@@ -7,10 +7,6 @@ import androidx.room.RoomDatabase
 import com.arech.digipaw.pet.list.data.local.database.dao.LocalRoomPetDao
 import com.arech.digipaw.pet.list.data.local.database.entity.LocalPetCard
 
-/**
- * Created by Pili Arancibia on 15-08-22.
- */
-
 @Database(entities = [LocalPetCard::class], version = 1)
 abstract class PetListDatabase : RoomDatabase() {
     abstract fun contactDao(): LocalRoomPetDao
