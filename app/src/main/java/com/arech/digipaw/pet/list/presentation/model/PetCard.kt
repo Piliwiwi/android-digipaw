@@ -1,5 +1,7 @@
 package com.arech.digipaw.pet.list.presentation.model
 
+import android.net.Uri
+
 /**
  * Created by Pili Arancibia on 15-08-22.
  */
@@ -13,6 +15,7 @@ data class PetCard(
     val age: Age,
     val description: String,
     val photo: String,
+    val uriPhoto: Uri? = null
 )
 
 data class Age(
@@ -23,5 +26,5 @@ data class Age(
 enum class Gender(val type: String) {
     Male("male"),
     Female("female"),
-    NoBinary("no binary")
+    Unknown("")
 }

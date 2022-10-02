@@ -19,10 +19,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 
-/**
- * Created by Pili Arancibia on 14-08-22.
- */
-
 @AndroidEntryPoint
 @FlowPreview
 @ExperimentalCoroutinesApi

@@ -1,5 +1,6 @@
 package com.arech.uicomponents.component
 
+import androidx.compose.foundation.clickable
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -8,6 +9,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.focus.onFocusEvent
 
 @Composable
 fun InputPaw(modifier: Modifier = Modifier, attrs: AttrsInputPaw) {
@@ -25,11 +28,12 @@ private fun InputPawContent(
     onChange: (String) -> Unit
 ) {
     OutlinedTextField(
-        modifier = modifier,
+        modifier = modifier.onFocusChanged { if (it.isFocused) attrs.onClick?.invoke() },
         label = {
             Text(text = attrs.placeholder)
         },
-        value = text,
+        readOnly = attrs.readOnly,
+        value = attrs.value ?: text,
         singleLine = attrs.singleLine,
         onValueChange = {
             onChange(it)
@@ -41,6 +45,9 @@ private fun InputPawContent(
 data class AttrsInputPaw(
     val placeholder: String,
     val defaultValue: String = "",
+    val value: String? = null,
     val singleLine: Boolean = false,
-    val onTextChange: (String) -> Unit = { _ -> }
+    val readOnly: Boolean = false,
+    val onTextChange: (String) -> Unit = { _ -> },
+    val onClick: (() -> Unit)? = null
 )

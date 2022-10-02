@@ -44,6 +44,7 @@ fun AvatarSelector(modifier: Modifier = Modifier, attrs: AttrsAvatarSelector) {
         ActivityResultContracts.GetContent()
     ) { uri: Uri? ->
         imageUri = uri
+        attrs.onSelectAvatar(uri)
     }
 
     Box(modifier) {
@@ -76,5 +77,6 @@ fun AvatarSelectorContent(imageUri: Uri?, attrs: AttrsAvatarSelector) {
 }
 
 data class AttrsAvatarSelector(
-    @DrawableRes val placeHolderImage: Int = R.drawable.cat_example
+    @DrawableRes val placeHolderImage: Int = R.drawable.cat_example,
+    val onSelectAvatar: (Uri?) -> Unit = {}
 )

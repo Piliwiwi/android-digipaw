@@ -1,5 +1,6 @@
 package com.arech.digipaw.pet.list.ui.add
 
+import android.net.Uri
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,7 +16,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment.Companion.BottomCenter
@@ -35,8 +35,10 @@ import com.arech.digipaw.pet.list.presentation.model.PetCard
 import com.arech.digipaw.pet.list.ui.navigation.PetListNavActions
 import com.arech.uicomponents.component.AttrsAvatarSelector
 import com.arech.uicomponents.component.AttrsInputPaw
+import com.arech.uicomponents.component.AttrsSelectorPaws
 import com.arech.uicomponents.component.AvatarSelector
 import com.arech.uicomponents.component.InputPaw
+import com.arech.uicomponents.component.SelectorPaw
 import com.arech.uicomponents.navigation.DigipawTopAppBar
 import com.arech.utils.testing.RandomFactory.generateString
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -72,10 +74,7 @@ fun AddScreen(
             effect.collect {
                 when (it) {
                     PetAddedUiEffect -> {
-                        scaffoldState.snackbarHostState.showSnackbar(
-                            message = "hello world",
-                            actionLabel = "Retry"
-                        )
+                        navActions.popBackStack()
                     }
                     else -> {}
                 }
@@ -86,7 +85,13 @@ fun AddScreen(
 
 @Composable
 fun AddContent(intentHandler: AddIntentHandler) {
+    var photo: Uri? by remember { mutableStateOf(null) }
     var name by remember { mutableStateOf("") }
+    var description by remember { mutableStateOf("") }
+    var animal by remember { mutableStateOf("") }
+    var animalDialogState by remember { mutableStateOf(false) }
+    var gender by remember { mutableStateOf(Gender.Unknown) }
+    var genderDialogState by remember { mutableStateOf(false) }
 
     Column(horizontalAlignment = CenterHorizontally) {
         Text(
@@ -99,7 +104,11 @@ fun AddContent(intentHandler: AddIntentHandler) {
         )
         AvatarSelector(
             modifier = Modifier.wrapContentWidth(align = CenterHorizontally),
-            attrs = AttrsAvatarSelector()
+            attrs = AttrsAvatarSelector(
+                onSelectAvatar = {
+                    photo = it
+                }
+            )
         )
 
         InputPaw(
@@ -109,6 +118,62 @@ fun AddContent(intentHandler: AddIntentHandler) {
                 singleLine = true,
                 onTextChange = {
                     name = it
+                }
+            )
+        )
+
+        InputPaw(
+            modifier = Modifier.padding(top = 18.dp),
+            attrs = AttrsInputPaw(
+                placeholder = "Animal",
+                singleLine = true,
+                value = animal,
+                readOnly = true,
+                onClick = {
+                    animalDialogState = true
+                }
+            )
+        )
+
+        if (animalDialogState) {
+            SelectorPaw(attrs = AttrsSelectorPaws(
+                listToSelect = listOf("Perro", "Gato", "Conejo", "Pollo", "Hamster", "Ratón"),
+                onSelect = {
+                    animal = it
+                },
+                onDismissRequest = { animalDialogState = false }
+            ))
+        }
+
+        InputPaw(
+            modifier = Modifier.padding(top = 18.dp),
+            attrs = AttrsInputPaw(
+                placeholder = "Género",
+                singleLine = true,
+                value = gender.type,
+                readOnly = true,
+                onClick = {
+                    genderDialogState = true
+                }
+            )
+        )
+
+        if (genderDialogState) {
+            SelectorPaw(attrs = AttrsSelectorPaws(
+                listToSelect = listOf("Macho", "Hembra"),
+                onSelect = {
+                    gender = if (it == "Macho") Gender.Male else Gender.Female
+                },
+                onDismissRequest = { genderDialogState = false }
+            ))
+        }
+
+        InputPaw(
+            modifier = Modifier.padding(top = 18.dp),
+            attrs = AttrsInputPaw(
+                placeholder = "Descripción",
+                onTextChange = {
+                    description = it
                 }
             )
         )
@@ -126,12 +191,13 @@ fun AddContent(intentHandler: AddIntentHandler) {
                     PetCard(
                         id = generateString(),
                         breed = "Raza",
-                        description = "Descripcion",
-                        animal = "Animal",
+                        description = description,
+                        animal = animal,
                         age = Age(value = 4, "4 años"),
-                        gender = Gender.Female,
+                        gender = gender,
                         name = name,
-                        photo = ""
+                        photo = "",
+                        uriPhoto = photo
                     )
                 )
             }

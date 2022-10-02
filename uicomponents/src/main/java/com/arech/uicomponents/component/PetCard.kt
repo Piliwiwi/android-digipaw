@@ -1,5 +1,6 @@
 package com.arech.uicomponents.component
 
+import android.net.Uri
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.BorderStroke
@@ -21,6 +22,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
@@ -29,6 +31,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
+import coil.compose.rememberAsyncImagePainter
+import coil.request.ImageRequest
 import com.arech.uicomponents.R
 
 /**
@@ -69,7 +73,12 @@ private fun PetCardContent(attrs: AttrsPetCard, genderResource: GenderResource) 
                 modifier = Modifier
                     .height(dimensionResource(id = R.dimen.ui_size_89))
                     .fillMaxWidth(),
-                painter = painterResource(id = R.drawable.cat_example),
+                painter = if (attrs.uriPhoto == null) painterResource(id = R.drawable.cat_example) else rememberAsyncImagePainter(
+                    ImageRequest
+                        .Builder(LocalContext.current)
+                        .data(data = attrs.uriPhoto)
+                        .build()
+                ),
                 contentScale = ContentScale.Fit,
                 contentDescription = null
             )
@@ -163,6 +172,7 @@ private fun getGenderResource(isMale: Boolean): GenderResource =
 data class AttrsPetCard(
     val id: String,
     val name: String,
+    val uriPhoto: Uri? = null,
     val animal: String,
     val breed: String,
     val isMale: Boolean,

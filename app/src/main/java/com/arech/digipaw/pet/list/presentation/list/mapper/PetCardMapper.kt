@@ -5,7 +5,7 @@ import com.arech.digipaw.pet.list.presentation.model.Age
 import com.arech.digipaw.pet.list.presentation.model.Gender
 import com.arech.digipaw.pet.list.presentation.model.Gender.Female
 import com.arech.digipaw.pet.list.presentation.model.Gender.Male
-import com.arech.digipaw.pet.list.presentation.model.Gender.NoBinary
+import com.arech.digipaw.pet.list.presentation.model.Gender.Unknown
 import com.arech.digipaw.pet.list.presentation.model.PetCard
 import javax.inject.Inject
 
@@ -33,7 +33,7 @@ class PetCardMapper @Inject constructor() {
         when (gender) {
             Male.type -> Male
             Female.type -> Female
-            else -> NoBinary
+            else -> Unknown
         }
 
     private fun getAgeText(age: Int): Age =

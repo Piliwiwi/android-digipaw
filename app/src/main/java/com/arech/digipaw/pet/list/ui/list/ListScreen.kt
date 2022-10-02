@@ -119,7 +119,8 @@ fun PetList(data: List<PetCard>, navActions: PetListNavActions) {
                         breed = it.breed,
                         description = it.description,
                         isMale = it.gender.type == Gender.Male.type,
-                        animal = it.animal
+                        animal = it.animal,
+                        uriPhoto = it.uriPhoto
                     )
                 }
             )
